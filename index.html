@@ -608,7 +608,7 @@
             <div class="p-6 border-b border-neutral-100 flex justify-between items-center bg-neutral-50 rounded-t-3xl">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 rounded-full overflow-hidden border border-neutral-200">
-                        <img src="assets/webdrift.gif" class="w-full h-full object-cover">
+                        <img src="assets/chat_icon_glow.jpg" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <p class="font-semibold text-neutral-900">Nicolett Assistant</p>
@@ -632,17 +632,17 @@
 
             <div class="p-4 border-t border-neutral-100 bg-white rounded-b-3xl">
                 <form action="https://webdrift.io/chat" method="POST"
-                    class="flex items-center gap-2 bg-neutral-100 rounded-xl px-2 py-1">
-                    <button type="button" class="p-2 text-neutral-400 hover:text-neutral-600">
-                        <i data-lucide="mic" class="w-5 h-5"></i>
+                    class="flex items-center gap-1 sm:gap-2 bg-neutral-100 rounded-xl px-2 py-1 overflow-hidden">
+                    <button type="button" class="p-1 sm:p-2 text-neutral-400 hover:text-neutral-600 flex-shrink-0">
+                        <i data-lucide="mic" class="w-4 h-4 sm:w-5 h-5"></i>
                     </button>
                     <input type="text" name="message" placeholder="Schreib etwas..."
-                        class="bg-transparent border-none focus:ring-0 text-sm flex-1 py-3 text-neutral-800 placeholder-neutral-500 outline-none">
-                    <button type="button" class="p-2 text-neutral-400 hover:text-neutral-600">
-                        <i data-lucide="paperclip" class="w-5 h-5"></i>
+                        class="bg-transparent border-none focus:ring-0 text-sm flex-1 min-w-0 py-3 text-neutral-800 placeholder-neutral-500 outline-none">
+                    <button type="button" class="p-1 sm:p-2 text-neutral-400 hover:text-neutral-600 flex-shrink-0">
+                        <i data-lucide="paperclip" class="w-4 h-4 sm:w-5 h-5"></i>
                     </button>
                     <button type="submit"
-                        class="p-2 bg-neutral-900 text-white rounded-lg hover:bg-black transition-colors">
+                        class="p-2 bg-neutral-900 text-white rounded-lg hover:bg-black transition-colors flex-shrink-0">
                         <i data-lucide="send" class="w-4 h-4"></i>
                     </button>
                 </form>
@@ -651,7 +651,7 @@
 
         <button onclick="toggleChat()" class="chat-button group">
             <div class="relative">
-                <img src="assets/webdrift.gif" class="w-10 h-10 rounded-full object-cover border-2 border-white/20 shadow-sm">
+                <img src="assets/chat_icon_glow.jpg" class="w-10 h-10 rounded-full object-cover border-2 border-white/20 shadow-sm">
                 <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
             </div>
             <span id="chatLabel" class="text-sm"></span>
@@ -1739,3 +1739,4 @@
 </body>
 
 </html>
+
