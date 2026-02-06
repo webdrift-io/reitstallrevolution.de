@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="de">
+<!-- 
+    ========================================================================== 
+    LICENSE: WEB DRIFT STARTUP PROPOSAL
+    Designed & Developed by: WebDrift.io
+    Contact: start@webdrift.io
+    Property of: Nicolett (Reitstall Revolution)
+    ========================================================================== 
+-->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nicolett — PferdeBusinessExpertin</title>
+    <meta name="description"
+        content="Nicolett ist Deutschlands führende PferdeBusinessExpertin. Ich zeige dir, wie du vom Hamsterrad in den profitablen Geschäftsführer-Sessel kommst.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://reitstallrevolution.de/">
+    <meta property="og:title" content="Nicolett — PferdeBusinessExpertin">
+    <meta property="og:description"
+        content="Vom Hamsterrad in den profitablen Geschäftsführer-Sessel. Premium-Coaching für Reitschulbesitzer.">
+    <meta property="og:image" content="https://reitstallrevolution.de/assets/BAHA9102-1920w.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://reitstallrevolution.de/">
+    <meta property="twitter:title" content="Nicolett — PferdeBusinessExpertin">
+    <meta property="twitter:description"
+        content="Vom Hamsterrad in den profitablen Geschäftsführer-Sessel. Premium-Coaching für Reitschulbesitzer.">
+    <meta property="twitter:image" content="https://reitstallrevolution.de/assets/BAHA9102-1920w.webp">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        /* -------------------------------------------------------------------------- */
+        /* SECTION: DESIGN SYSTEM & TOKENS                                            */
+        /* -------------------------------------------------------------------------- */
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #2d2d2d;
+            --accent: #1a1a1a;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.06);
+            --radius-lg: 28px;
+            --radius-md: 14px;
+        }
+
+        * {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            cursor: none;
+        }
+
+        body {
+            background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            background-size: 200% 200%;
+            animation: gradientBG 10s ease infinite;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Custom Cursor */
+        .cursor-follower {
+            position: fixed;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        body:hover .cursor-follower {
+            opacity: 1;
+        }
+
+        /* Cursor grows on text hover */
+        .cursor-follower.text-hover {
+            transform: translate(-50%, -50%) scale(3);
+            background: white;
+            mix-blend-mode: difference;
+        }
+
+        /* Sunset Mesh Gradient Overlay for Hero */
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(255, 160, 122, 0.4) 0%, rgba(255, 105, 180, 0.1) 50%, transparent 100%);
+            filter: blur(60px);
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            animation: pulseGlow 8s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 28px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            border-radius: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: none;
+            /* Keep custom cursor visible */
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2d2d2d 0%, #404040 100%);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-ghost {
+            background: rgba(0, 0, 0, 0.05);
+            color: #1a1a1a;
+            border-radius: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: none;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .mini-badge {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            z-index: 101;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-content.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .logo-dark {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 6px;
+            border-radius: 14px;
+            display: inline-flex;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: none;
+        }
+
+        .logo-dark:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 14px;
+            padding: 16px 20px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            width: 100%;
+            cursor: none;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #1a1a1a;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 90;
+        }
+
+        .chat-button {
+            height: 60px;
+            padding: 0 24px;
+            border-radius: 16px;
+            /* Square with rounded corners */
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: none;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .chat-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .chat-popup {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 360px;
+            max-width: calc(100vw - 48px);
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.3s ease;
+        }
+
+        .chat-popup.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+
+        .blog-card,
+        .podcast-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .blog-card:hover,
+        .podcast-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        /* Why Me Tabs */
+        .feature-tab-btn {
+            text-align: left;
+            padding: 16px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            width: 100%;
+            border: 1px solid transparent;
+        }
+
+        .feature-tab-btn.active {
+            background: white;
+            border-color: rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-tab-content {
+            display: none;
+        }
+
+        .feature-tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Updated Blog Card Style */
+        .place-card {
+            border-radius: 16px;
+            overflow: hidden;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .place-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .chat-popup {
+                width: calc(100vw - 40px);
+                right: 20px;
+                bottom: 80px;
+            }
+
+            * {
+                cursor: auto !important;
+            }
+
+            /* Restore default cursor on mobile */
+            .cursor-follower {
+                display: none;
+            }
+
+            /* Global Mobile Spacing & Padding Audit */
+            body {
+                padding-bottom: 80px;
+            }
+
+            section {
+                margin-bottom: 40px !important;
+                padding-left: 6px;
+                padding-right: 6px;
+            }
+
+            .glass-card {
+                padding: 16px !important;
+            }
+
+            h1 {
+                font-size: 1.85rem !important;
+                line-height: 1.2 !important;
+            }
+
+            h2 {
+                font-size: 1.6rem !important;
+            }
+
+            p {
+                font-size: 0.95rem !important;
+            }
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* PREMIUM MOBILE MENU                                                       */
+        /* -------------------------------------------------------------------------- */
+        .mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mobile-menu-overlay.active {
+            transform: translateX(0);
+        }
+
+        .mobile-link {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #171717;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* PREMIUM FEATURES & ANIMATIONS                                              */
+        /* -------------------------------------------------------------------------- */
+        .text-gradient-pink {
+            background: linear-gradient(90deg, #ff7eb3, #ff758c, #ff7eb3);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientMove 3s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .testimonial-slider-container {
+            width: 100%;
+            overflow: hidden;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        .testimonial-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+        }
+
+        .testimonial-card-slider {
+            width: 350px;
+            flex-shrink: 0;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: #1a1a1a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 90;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+        }
+
+        .faq-trigger {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .faq-content {
+            height: 0;
+            overflow: hidden;
+            transition: height 0.3s ease-out;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .chat-simulation-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @media (min-width: 1280px) {
+            .chat-simulation-card {
+                transform: translateX(20px);
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Custom Cursor Follower -->
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+
+
+    <!-- Modal -->
+    <div id="modalOverlay" class="modal-overlay" onclick="closeModal()"></div>
+    <div id="modalContent" class="modal-content glass-card p-0">
+        <button onclick="closeModal()"
+            class="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center transition-colors z-10 text-white backdrop-blur-md">
+            <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <div id="modalInner"></div>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <div id="chatPopup" class="chat-popup">
+            <div class="p-6 border-b border-neutral-100 flex justify-between items-center bg-neutral-50 rounded-t-3xl">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full overflow-hidden border border-neutral-200">
+                        <img src="assets/webdrift.gif" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <p class="font-semibold text-neutral-900">Nicolett Assistant</p>
+                        <p class="text-xs text-green-600 flex items-center gap-1">
+                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> Online
+                        </p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-neutral-400 hover:text-neutral-600 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="p-6 h-64 overflow-y-auto bg-white">
+                <div class="bg-neutral-100 rounded-2xl rounded-tl-sm p-4 max-w-[90%] mb-4">
+                    <p class="text-sm text-neutral-700 leading-relaxed">
+                        Hallo! 👋 Ich bin Nicolett, deine AI-Assistentin. Hast du Fragen zu meinem Coaching?
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-neutral-100 bg-white rounded-b-3xl">
+                <form action="https://webdrift.io/chat" method="POST"
+                    class="flex items-center gap-2 bg-neutral-100 rounded-xl px-2 py-1">
+                    <button type="button" class="p-2 text-neutral-400 hover:text-neutral-600">
+                        <i data-lucide="mic" class="w-5 h-5"></i>
+                    </button>
+                    <input type="text" name="message" placeholder="Schreib etwas..."
+                        class="bg-transparent border-none focus:ring-0 text-sm flex-1 py-3 text-neutral-800 placeholder-neutral-500 outline-none">
+                    <button type="button" class="p-2 text-neutral-400 hover:text-neutral-600">
+                        <i data-lucide="paperclip" class="w-5 h-5"></i>
+                    </button>
+                    <button type="submit"
+                        class="p-2 bg-neutral-900 text-white rounded-lg hover:bg-black transition-colors">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <button onclick="toggleChat()" class="chat-button group">
+            <div class="relative">
+                <img src="assets/webdrift.gif" class="w-10 h-10 rounded-full object-cover border-2 border-white/20 shadow-sm">
+                <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
+            </div>
+            <span id="chatLabel" class="text-sm"></span>
+        </button>
+    </div>
+
+    <!-- Premium Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay md:hidden">
+        <div class="flex justify-between items-center mb-12">
+            <img src="assets/reitstallrevolution--286-29-1920w.webp" class="h-8 w-auto">
+            <button onclick="toggleMenu()" class="p-2 text-neutral-900">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col">
+            <a href="#about" onclick="toggleMenu()" class="mobile-link">Über Mich</a>
+            <a href="#story" onclick="toggleMenu()" class="mobile-link">Geschichte</a>
+            <a href="#blog" onclick="toggleMenu()" class="mobile-link">Blog</a>
+            <a href="#podcast" onclick="toggleMenu()" class="mobile-link">Podcast</a>
+            <a href="#contact" onclick="toggleMenu()" class="mobile-link">Kontakt</a>
+        </nav>
+        <div class="mt-auto pt-12">
+            <p class="text-sm text-neutral-400 mb-4 uppercase tracking-widest">Kontakt</p>
+            <a href="mailto:servie@reitstallrevolution.de"
+                class="text-xl font-bold text-neutral-900 block mb-2">servie@reitstallrevolution.de</a>
+            <div class="flex gap-4 mt-6">
+                <!-- Placeholder for social icons if needed -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
+        <nav class="max-w-6xl mx-auto glass-nav px-4 py-3 flex items-center justify-between relative">
+            <a href="#" class="logo-dark">
+                <img src="assets/reitstallrevolution--286-29-1920w.webp" alt="Logo"
+                    class="h-10 w-auto object-contain rounded-lg">
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-1 bg-neutral-100/80 backdrop-blur-md rounded-full px-1 py-1">
+                <a href="#about"
+                    class="px-4 py-2 rounded-full text-sm font-medium text-neutral-600 hover:text-neutral-900 hover:bg-white transition-all">Über
+                    Mich</a>
+                <a href="#story"
+                    class="px-4 py-2 rounded-full text-sm font-medium text-neutral-600 hover:text-neutral-900 hover:bg-white transition-all">Geschichte</a>
+                <a href="#blog"
+                    class="px-4 py-2 rounded-full text-sm font-medium text-neutral-600 hover:text-neutral-900 hover:bg-white transition-all">Blog</a>
+                <a href="#podcast"
+                    class="px-4 py-2 rounded-full text-sm font-medium text-neutral-600 hover:text-neutral-900 hover:bg-white transition-all">Podcast</a>
+                <a href="#contact"
+                    class="px-4 py-2 rounded-full text-sm font-medium text-neutral-600 hover:text-neutral-900 hover:bg-white transition-all">Kontakt</a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button onclick="toggleMenu()"
+                class="md:hidden p-2 text-neutral-600 hover:bg-neutral-100 rounded-xl transition-colors">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+
+            <a href="#contact" class="hidden sm:flex btn-primary px-5 py-2.5 text-sm items-center gap-2">
+                <span>Termin buchen</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+        </nav>
+    </header>
+
+    <main class="pt-28 pb-16 px-4">
+
+        <!-- ------------------------------------------------------------------- -->
+        <!-- SECTION: HERO                                                       -->
+        <!-- ------------------------------------------------------------------- -->
+        <section id="about" class="max-w-6xl mx-auto mb-20 scroll-mt-28 relative px-4 md:px-0">
+            <div class="hero-gradient"></div>
+            <div class="glass-card p-8 md:p-14 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-10 items-center">
+                    <div class="space-y-6 text-left order-1">
+                        <div
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-100 text-neutral-600 text-xs font-semibold uppercase tracking-wider">
+                            <i data-lucide="award" class="w-4 h-4"></i>
+                            PferdeBusinessExpertin
+                        </div>
+
+                        <h1
+                            class="text-3xl md:text-5xl lg:text-6xl font-bold text-neutral-900 tracking-tight leading-[1.1]">
+                            <span id="heroTypewriter">Unkonventionell.</span><br>
+                            <span class="text-gradient-pink">Ehrlich.</span><br>
+                            Erfolgreich.
+                        </h1>
+
+                        <p class="text-lg text-neutral-500 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                            Hi, ich bin <strong class="text-neutral-900">Nicolett</strong> – Reitschul-Revolutionärin.
+                            Ich zeige dir, wie du vom Hamsterrad in den profitablen Geschäftsführer-Sessel kommst.
+                        </p>
+
+                        <!-- Buttons Removed as requested -->
+
+                        <div class="grid grid-cols-3 gap-3 pt-6">
+                            <div class="text-center p-4 rounded-2xl bg-white/60">
+                                <div class="text-2xl md:text-3xl font-bold text-neutral-900">15+</div>
+                                <div class="text-xs text-neutral-400 mt-1">Jahre</div>
+                            </div>
+                            <div class="text-center p-4 rounded-2xl bg-white/60">
+                                <div class="text-2xl md:text-3xl font-bold text-neutral-900">300+</div>
+                                <div class="text-xs text-neutral-400 mt-1">Schüler</div>
+                            </div>
+                            <div class="text-center p-4 rounded-2xl bg-white/60">
+                                <div class="text-2xl md:text-3xl font-bold text-neutral-900">100%</div>
+                                <div class="text-xs text-neutral-400 mt-1">Ausgebucht</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative order-2">
+                        <div class="rounded-3xl overflow-hidden shadow-2xl">
+                            <img src="assets/BAHA9102-1920w.webp" alt="Nicolett"
+                                class="w-full aspect-[4/5] md:aspect-auto md:h-[450px] object-cover">
+                        </div>
+                        <!-- 'Outsider' Card Removed as requested -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ------------------------------------------------------------------- -->
+        <!-- SECTION: STORY                                                      -->
+        <!-- ------------------------------------------------------------------- -->
+        <section id="story" class="max-w-6xl mx-auto mb-20 scroll-mt-28">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-3">Meine Geschichte</h2>
+                <p class="text-neutral-500 text-lg">Vom Traum zur Revolution</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <!-- Card 2015 -->
+                <div
+                    class="glass-card overflow-hidden group rounded-xl border-2 border-neutral-200 hover:border-neutral-900/10 shadow-lg">
+                    <div class="h-52 overflow-hidden relative">
+                        <!-- New Image -->
+                        <img src="assets/story_2015_real.webp"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            alt="2015">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="mini-badge">Gründung</span>
+                        </div>
+                        <div class="absolute bottom-4 left-5">
+                            <span class="text-4xl font-bold text-white">2015</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-neutral-900 mb-2">Der unschuldige Beginn</h3>
+                        <!-- Longer teaser text -->
+                        <p class="text-sm text-neutral-500 leading-relaxed mb-4">
+                            Alles begann mit einem Traum und zwei Ponys. Die Leidenschaft war groß, aber ein echter
+                            Business-Plan fehlte. Ich wollte einfach nur Kindern das Reiten beibringen, doch der
+                            geschäftliche Ernst des Lebens holte mich schneller ein, als gedacht...
+                        </p>
+                        <button onclick="openModal('2015')"
+                            class="btn-ghost px-4 py-3 text-sm flex items-center gap-2 w-full justify-center">
+                            <span>Mehr lesen</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2022 -->
+                <div
+                    class="glass-card overflow-hidden group rounded-xl border-2 border-neutral-200 hover:border-neutral-900/10 shadow-lg">
+                    <div class="h-52 overflow-hidden relative">
+                        <!-- New Image -->
+                        <img src="assets/story_struggle_real.webp"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110"
+                            alt="2022">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="mini-badge bg-gradient-to-r from-amber-600 to-orange-600">Wendepunkt</span>
+                        </div>
+                        <div class="absolute bottom-4 left-5">
+                            <span class="text-4xl font-bold text-white">2022</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-neutral-900 mb-2">Die harte Realität</h3>
+                        <!-- Longer teaser text -->
+                        <p class="text-sm text-neutral-500 leading-relaxed mb-4">
+                            Trotz voller Reitstunden und sechsstelligen Umsätzen blieb am Ende des Monats nichts übrig.
+                            Ich war erschöpft, ausgebrannt und stand kurz vor der Insolvenz. "Masse statt Klasse"
+                            funktionierte nicht mehr. Es musste sich etwas ändern.
+                        </p>
+                        <button onclick="openModal('2022')"
+                            class="btn-ghost px-4 py-3 text-sm flex items-center gap-2 w-full justify-center">
+                            <span>Mehr lesen</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2023 -->
+                <div
+                    class="glass-card overflow-hidden group rounded-xl border-2 border-neutral-900/5 hover:border-emerald-500/20 shadow-lg ring-0">
+                    <div class="h-52 overflow-hidden relative">
+                        <!-- New Image -->
+                        <img src="assets/story_success_real.webp"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            alt="2023">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="mini-badge bg-gradient-to-r from-emerald-600 to-green-600">Revolution</span>
+                        </div>
+                        <div class="absolute bottom-4 left-5">
+                            <span class="text-4xl font-bold text-white">2023</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-neutral-900 mb-2">Der Durchbruch 🚀</h3>
+                        <!-- Longer teaser text -->
+                        <p class="text-sm text-neutral-500 leading-relaxed mb-4">
+                            Ich traf eine radikale Entscheidung: Premium statt Discounter. Preise rauf, Qualität rauf,
+                            Stress runter. Heute führe ich eine profitable, exklusive Reitschule mit Warteliste und habe
+                            endlich wieder Zeit für das Wesentliche.
+                        </p>
+                        <button onclick="openModal('2023')"
+                            class="btn-ghost px-4 py-3 text-sm flex items-center gap-2 w-full justify-center">
+                            <span>Mehr lesen</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ------------------------------------------------------------------- -->
+        <!-- SECTION: WHY ME                                                     -->
+        <!-- ------------------------------------------------------------------- -->
+        <section class="max-w-7xl mx-auto mb-32 px-4 mt-[50px]">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+                <!-- Left Content -->
+                <div class="lg:col-span-12 xl:col-span-5 order-1">
+                    <h2 class="text-4xl md:text-5xl font-bold text-neutral-900 mb-6 leading-tight">
+                        Warum ich?
+                    </h2>
+                    <p class="text-lg text-neutral-500 mb-10 leading-relaxed type-writer-text min-h-[80px]">
+                        <!-- Text will be typed by GSAP -->
+                    </p>
+
+                    <div class="mt-8 flex gap-4">
+                        <a href="#contact"
+                            class="btn-primary px-6 py-3 text-sm rounded-lg inline-flex items-center gap-2">
+                            Starten
+                        </a>
+                        <a href="#story"
+                            class="px-6 py-3 text-sm rounded-lg border border-neutral-200 hover:bg-neutral-50 font-medium text-neutral-700">
+                            Mehr erfahren
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Chat Simulation -->
+                <div class="lg:col-span-12 xl:col-span-7 order-2 flex justify-center w-full">
+                    <div
+                        class="relative rounded-3xl border border-neutral-200 bg-white p-6 shadow-2xl overflow-hidden w-full max-w-2xl chat-simulation-card">
+                        <!-- Chat Header -->
+                        <div class="flex items-center gap-4 border-b border-neutral-100 pb-4 mb-6">
+                            <div class="w-14 h-14 rounded-full overflow-hidden border border-neutral-200">
+                                <img src="assets/me.jpg" class="w-full h-full object-cover" alt="Nicolett">
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-neutral-900 text-lg">Nicolett</h3>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
+                                    <span class="text-sm text-neutral-500">Antwortet sofort</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chat Messages Container -->
+                        <div id="chat-simulation-container" class="space-y-5 mb-4 min-h-[340px]">
+                            <!-- Messages will be injected by GSAP -->
+                        </div>
+
+                        <!-- Fake Input Area -->
+                        <div
+                            class="bg-neutral-50 rounded-xl p-4 flex items-center gap-3 border border-neutral-100 opacity-50">
+                            <div class="w-10 h-10 rounded-full bg-neutral-200"></div>
+                            <div class="h-3 w-40 bg-neutral-200 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ------------------------------------------------------------------- -->
+        <!-- SECTION: BLOG                                                       -->
+        <!-- ------------------------------------------------------------------- -->
+        <section id="blog" class="max-w-6xl mx-auto mb-20 scroll-mt-28">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-3">Blog</h2>
+                <p class="text-neutral-500">Tipps & Strategien für dein Pferdebusiness</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Blog 1 -->
+                <article class="place-card cursor-pointer group" onclick="openBlogModal('marketing')">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="assets/blog_analytics_real.png" alt="Marketing"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+                        <!-- Badges -->
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span
+                                class="px-2 py-1 bg-white/80 backdrop-blur-md text-xs font-semibold rounded-md">Growth</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <div
+                                class="px-2 py-1 bg-white/80 backdrop-blur-md rounded-md flex items-center gap-1 text-xs font-bold">
+                                <i data-lucide="star" class="w-3 h-3 text-yellow-400 fill-current"></i> 4.9
+                            </div>
+                        </div>
+
+                        <!-- Dots -->
+                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                            <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/50"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/50"></div>
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-neutral-900">Marketing Automation</h3>
+                            <span
+                                class="border border-neutral-200 px-2 py-0.5 rounded text-[10px] font-semibold text-neutral-500 uppercase">Top
+                                Rated</span>
+                        </div>
+
+                        <div class="text-sm text-neutral-500 mb-3 space-x-2">
+                            <span>10 min Lesezeit</span> &bull; <span>Für Stallbesitzer</span>
+                        </div>
+
+                        <p class="text-sm text-neutral-500 mb-4 line-clamp-2">Wie du E-Mails, Rechnungen und
+                            Terminbuchungen automatisierst, damit du mehr Zeit im Sattel verbringen kannst.</p>
+
+                        <div class="flex justify-between items-center pt-2 border-t border-neutral-50">
+                            <p class="font-semibold text-neutral-900">Kostenlos <span
+                                    class="font-normal text-neutral-400 text-sm">/ online</span></p>
+                            <button
+                                class="bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-neutral-800 transition-colors">
+                                Lesen
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog 2 -->
+                <article class="place-card cursor-pointer group" onclick="openBlogModal('pricing')">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="assets/blog_premium_real.png" alt="Premium Pricing"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span
+                                class="px-2 py-1 bg-white/80 backdrop-blur-md text-xs font-semibold rounded-md">Finance</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <div
+                                class="px-2 py-1 bg-white/80 backdrop-blur-md rounded-md flex items-center gap-1 text-xs font-bold">
+                                <i data-lucide="star" class="w-3 h-3 text-yellow-400 fill-current"></i> 5.0
+                            </div>
+                        </div>
+                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                            <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/50"></div>
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-neutral-900">Premium Pricing</h3>
+                        </div>
+
+                        <div class="text-sm text-neutral-500 mb-3 space-x-2">
+                            <span>15 min Lesezeit</span> &bull; <span>Strategie</span>
+                        </div>
+
+                        <p class="text-sm text-neutral-500 mb-4 line-clamp-2">Warum billig dich pleite macht und wie du
+                            Preise durchsetzt, die deine Qualität widerspiegeln.</p>
+
+                        <div class="flex justify-between items-center pt-2 border-t border-neutral-50">
+                            <p class="font-semibold text-neutral-900">Kostenlos <span
+                                    class="font-normal text-neutral-400 text-sm">/ online</span></p>
+                            <button
+                                class="bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-neutral-800 transition-colors">
+                                Lesen
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog 3 -->
+                <article class="place-card cursor-pointer group" onclick="openBlogModal('balance')">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="assets/blog_relax_real.png" alt="Work Life Balance"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span
+                                class="px-2 py-1 bg-white/80 backdrop-blur-md text-xs font-semibold rounded-md">Mindset</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <div
+                                class="px-2 py-1 bg-white/80 backdrop-blur-md rounded-md flex items-center gap-1 text-xs font-bold">
+                                <i data-lucide="star" class="w-3 h-3 text-yellow-400 fill-current"></i> 4.8
+                            </div>
+                        </div>
+                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                            <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/50"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/50"></div>
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-neutral-900">Work-Life-Balance</h3>
+                            <span
+                                class="border border-neutral-200 px-2 py-0.5 rounded text-[10px] font-semibold text-neutral-500 uppercase">New</span>
+                        </div>
+
+                        <div class="text-sm text-neutral-500 mb-3 space-x-2">
+                            <span>5 min Lesezeit</span> &bull; <span>Gesundheit</span>
+                        </div>
+
+                        <p class="text-sm text-neutral-500 mb-4 line-clamp-2">Abschalten trotz Selbstständigkeit? Ja,
+                            das geht. Meine besten Tipps gegen Burnout.</p>
+
+                        <div class="flex justify-between items-center pt-2 border-t border-neutral-50">
+                            <p class="font-semibold text-neutral-900">Kostenlos <span
+                                    class="font-normal text-neutral-400 text-sm">/ online</span></p>
+                            <button
+                                class="bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-neutral-800 transition-colors">
+                                Lesen
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+
+        <!-- ------------------------------------------------------------------- -->
+        <!-- SECTION: PODCAST                                                    -->
+        <!-- ------------------------------------------------------------------- -->
+        <section id="podcast" class="max-w-6xl mx-auto mb-20 scroll-mt-28">
+            <div class="glass-card p-6 md:p-10">
+                <div class="grid lg:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <span
+                            class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-4">
+                            <i data-lucide="mic" class="w-4 h-4"></i> Podcast
+                        </span>
+                        <h2 class="text-3xl font-bold text-neutral-900 mb-4">Reitschul-Revolution Podcast</h2>
+                        <p class="text-neutral-500 leading-relaxed mb-6">
+                            Wöchentlich neue Folgen mit Tipps, Interviews und Strategien für dein Pferdebusiness.
+                            Kostenlos auf allen Plattformen.
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="#" class="btn-primary px-5 py-3 text-sm flex items-center gap-2">
+                                <i data-lucide="headphones" class="w-4 h-4"></i> Spotify
+                            </a>
+                            <a href="#" class="btn-ghost px-5 py-3 text-sm flex items-center gap-2">
+                                <i data-lucide="play-circle" class="w-4 h-4"></i> Apple Podcasts
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="podcast-card p-5">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-xl bg-neutral-900 flex items-center justify-center">
+                                        <i data-lucide="play" class="w-5 h-5 text-white"></i>
+                                    </div>
+                                    <span class="text-xs text-neutral-400">NEUE FOLGE</span>
+                                </div>
+                                <h4 class="font-semibold text-neutral-900 text-sm italic">"So erfolglos so kraftlos"
+                                </h4>
+                            </div>
+                            <div class="podcast-card p-5">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-xl bg-neutral-900 flex items-center justify-center">
+                                        <i data-lucide="play" class="w-5 h-5 text-white"></i>
+                                    </div>
+                                    <span class="text-xs text-neutral-400">TRENDING</span>
+                                </div>
+                                <h4 class="font-semibold text-neutral-900 text-sm italic">"Reiten wird unbezahlbar"</h4>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex justify-end">
+                            <a href="https://podcasters.spotify.com/pod/show/reitstall-revolution" target="_blank"
+                                class="btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3">
+                                <span>+60 weitere Episoden ansehen</span>
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ------------------------------------------------------------------- -->
+        <!-- SECTION: TESTIMONIALS (MOVING SLIDER)                               -->
+        <!-- ------------------------------------------------------------------- -->
+        <section id="testimonials" class="mb-20 scroll-mt-28">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-3">Erfolgsgeschichten</h2>
+                <p class="text-neutral-500 text-lg">Gemeinsam zum profitablen Pferdebusiness</p>
+            </div>
+
+            <div class="testimonial-slider-container">
+                <div id="testimonialTrack" class="testimonial-track">
+                    <!-- Data will be injected twice for seamless loop -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ------------------------------------------------------------------- -->
+        <!-- SECTION: FAQ                                                        -->
+        <!-- ------------------------------------------------------------------- -->
+        <section id="faq" class="max-w-4xl mx-auto mb-20 scroll-mt-28 px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-3">Häufige Fragen</h2>
+            </div>
+            <div id="faqContainer" class="space-y-2">
+                <!-- Data will be injected -->
+            </div>
+        </section>
+        <section id="contact" class="max-w-6xl mx-auto scroll-mt-28">
+            <div class="glass-card overflow-hidden">
+                <div class="grid lg:grid-cols-2">
+                    <div class="p-6 md:p-12 order-2 lg:order-1">
+                        <span
+                            class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-4">
+                            <i data-lucide="mail" class="w-4 h-4"></i> Kontakt
+                        </span>
+                        <h2 class="text-2xl md:text-3xl font-bold text-neutral-900 mb-2">Lass uns sprechen</h2>
+                        <p class="text-sm text-neutral-500 mb-6">Antwort innerhalb von 24 Stunden.</p>
+
+                        <form action="https://webdrift.io/api/contact" method="POST" class="space-y-3">
+                            <input type="hidden" name="source" value="nicolett-about-page">
+                            <div class="grid md:grid-cols-2 gap-3">
+                                <input type="text" name="firstName" class="form-input" placeholder="Vorname" required>
+                                <input type="text" name="lastName" class="form-input" placeholder="Nachname" required>
+                            </div>
+                            <input type="email" name="email" class="form-input" placeholder="E-Mail" required>
+                            <input type="tel" name="phone" class="form-input" placeholder="Telefon (optional)">
+                            <textarea name="message" class="form-input h-24 resize-none"
+                                placeholder="Deine Nachricht..." required></textarea>
+                            <button type="submit"
+                                class="btn-primary w-full py-3 text-base flex items-center justify-center gap-2">
+                                <span>Nachricht senden</span>
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                            </button>
+                            <p class="text-center text-[10px] text-neutral-400">✓ Kostenlos &nbsp; ✓ Unverbindlich
+                                &nbsp; ✓ 24h Antwort</p>
+                        </form>
+                    </div>
+                    <div
+                        class="lg:col-span-1 flex items-center justify-center bg-gradient-to-br from-neutral-50 to-neutral-100 relative overflow-hidden group min-h-[300px] order-1 lg:order-2">
+                        <!-- Dresden 3D Image (Restored) -->
+                        <img src="assets/dresden_3d.png" alt="Dresden 3D"
+                            class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500">
+
+                        <!-- Info Overlay -->
+                        <div
+                            class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50 translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-600">
+                                        <i data-lucide="mail" class="w-4 h-4"></i>
+                                    </div>
+                                    <a href="mailto:servie@reitstallrevolution.de"
+                                        class="text-sm font-medium text-neutral-900 hover:text-blue-600 transition-colors">servie@reitstallrevolution.de</a>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-600">
+                                        <i data-lucide="phone" class="w-4 h-4"></i>
+                                    </div>
+                                    <a href="tel:+491234567890"
+                                        class="text-sm font-medium text-neutral-900 hover:text-blue-600 transition-colors">+49
+                                        123 456 7890</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="pb-16 px-4">
+        <div class="max-w-6xl mx-auto glass-card p-10 md:p-14">
+            <div class="grid md:grid-cols-3 gap-12 items-start">
+                <!-- Branding & Socials -->
+                <div class="space-y-6 text-center md:text-left">
+                    <a href="#" class="logo-dark">
+                        <img src="assets/reitstallrevolution--286-29-1920w.webp" alt="Logo" class="h-10 w-auto">
+                    </a>
+                    <p class="text-neutral-500 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
+                        Nicolett – Deine Expertin für ein profitables und freies Pferdebusiness.
+                    </p>
+                    <div class="flex justify-center md:justify-start gap-3 pt-2">
+                        <a href="https://wa.me/491234567890" target="_blank"
+                            class="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center hover:bg-green-500 hover:text-white transition-all shadow-sm">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://t.me/nicolett" target="_blank"
+                            class="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center hover:bg-blue-400 hover:text-white transition-all shadow-sm">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" target="_blank"
+                            class="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center hover:bg-neutral-900 hover:text-white transition-all shadow-sm">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" target="_blank"
+                            class="w-10 h-10 rounded-xl bg-neutral-100 flex items-center justify-center hover:bg-neutral-900 hover:text-white transition-all shadow-sm">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Center: Navigation -->
+                <div class="text-center space-y-4">
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Navigation</p>
+                    <nav class="grid grid-cols-2 gap-x-8 gap-y-3 max-w-[280px] mx-auto">
+                        <a href="#about"
+                            class="text-sm font-semibold text-neutral-600 hover:text-neutral-900 transition-colors text-right md:text-left">Über
+                            Mich</a>
+                        <a href="#story"
+                            class="text-sm font-semibold text-neutral-600 hover:text-neutral-900 transition-colors text-left md:text-right">Geschichte</a>
+                        <a href="#blog"
+                            class="text-sm font-semibold text-neutral-600 hover:text-neutral-900 transition-colors text-right md:text-left">Blog</a>
+                        <a href="#podcast"
+                            class="text-sm font-semibold text-neutral-600 hover:text-neutral-900 transition-colors text-left md:text-right">Podcast</a>
+                    </nav>
+                </div>
+
+                <!-- Right: Legal -->
+                <div class="text-center md:text-right space-y-4">
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Rechtliches</p>
+                    <div class="flex flex-col md:items-end gap-2 text-center md:text-right">
+                        <a href="#"
+                            class="text-xs font-medium text-neutral-400 hover:text-neutral-900 transition-colors">Impressum</a>
+                        <a href="#"
+                            class="text-xs font-medium text-neutral-400 hover:text-neutral-900 transition-colors">Datenschutz</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-14 pt-8 border-t border-neutral-100 text-center">
+                <p class="text-[10px] text-neutral-400 font-medium">
+                    &copy; 2026 REITSTALL REVOLUTION. Alle Rechte vorbehalten. | <a href="https://webdrift.io"
+                        class="hover:text-neutral-900 transition-colors">Developed by WebDrift.io</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 
+    ========================================================================== 
+    JAVASCRIPT: SYSTEM ENGINE & DATA
+    ========================================================================== 
+    -->
+    <script>
+        /* -------------------------------------------------------------------------- */
+        /* DATA: CONTENT & TEXT (EDIT ONLY HERE)                                      */
+        /* -------------------------------------------------------------------------- */
+
+        const FAQ_DATA = [
+            {
+                q: "Wie läuft ein Strategiegespräch ab?",
+                a: "Wir analysieren deine aktuelle Situation, finden die größten Hebel für dein Wachstum und erstellen einen konkreten Fahrplan – völlig unverbindlich."
+            },
+            {
+                q: "Für wen ist das Coaching geeignet?",
+                a: "Für Reitschulbesitzer, die bereits ein Business haben, aber feststecken, ausgebrannt sind oder ihre Profitabilität deutlich steigern wollen."
+            },
+            {
+                q: "Brauche ich Vorkenntnisse in Marketing?",
+                a: "Nein. Ich zeige dir Schritt für Schritt, wie du einfache, aber extrem effektive Systeme aufbaust, die fast von alleine laufen."
+            }
+        ];
+
+        const TESTIMONIAL_DATA = [
+            {
+                name: "Anika Laubner",
+                role: "Reitstallbesitzerin",
+                image: "https://randomuser.me/api/portraits/women/32.jpg",
+                text: "Dank Nicolett habe ich meine Preise endlich an meine Qualität angepasst. Meine Kunden sind geblieben und ich habe endlich wieder Zeit für meine eigenen Pferde."
+            },
+            {
+                name: "Verena Piendl",
+                role: "Dressurstallleitung",
+                image: "https://randomuser.me/api/portraits/women/44.jpg",
+                text: "Die Marketing-Automatisierung war ein Game-Changer. Ich muss mich nicht mehr um Anfragen kümmern, mein Postfach füllt sich von allein mit qualifizierten Kunden."
+            },
+            {
+                name: "Stefan Meyer",
+                role: "Pferdepension",
+                image: "https://randomuser.me/api/portraits/men/46.jpg",
+                text: "Vom Hamsterrad in die Freiheit. Nicolett hat mir gezeigt, dass man als Stallbesitzer nicht 24/7 arbeiten muss, um erfolgreich zu sein."
+            },
+            {
+                name: "Laura Schmidt",
+                role: "Hippotherapeutin",
+                image: "https://randomuser.me/api/portraits/women/65.jpg",
+                text: "Früher habe ich pro Stunde abgerechnet, heute verkaufe ich wertvolle Pakete. Mein Umsatz hat sich verdreifacht und ich arbeite weniger."
+            },
+            {
+                name: "Michael Koch",
+                role: "Zuchstallbetreiber",
+                image: "https://randomuser.me/api/portraits/men/22.jpg",
+                text: "Endlich verstehe ich, wie man online Kunden gewinnt, die meine Arbeit wirklich schätzen. Eine absolute Empfehlung für jeden Pferdeprofi."
+            },
+            {
+                name: "Sarah Wagner",
+                role: "Westernreitlehrerin",
+                image: "https://randomuser.me/api/portraits/women/17.jpg",
+                text: "Die Zusammenarbeit hat mir den Mut gegeben, meine eigene Marke aufzubauen. Ich bin jetzt für die nächsten 6 Monate komplett ausgebucht."
+            }
+        ];
+
+        const MODAL_DATA = {
+            '2015': {
+                title: '2015 – Der große Traum beginnt',
+                image: 'assets/story_2015_real.webp',
+                content: `<p class="mb-4 font-medium text-lg text-neutral-900">"Es war Liebe auf den ersten Blick, aber auch Chaos auf die erste Abrechnung."</p>
+                          <p class="mb-4">Als ich 2015 beschloss, meine eigene Reitschule zu gründen, hatte ich eine Vision: Ein Ort, an dem Kinder und Pferde gleichermaßen glücklich sind. Die "PonyTruppe Dresden" startete mit zwei Shetlandponys und einer Handvoll Reitschüler.</p>
+                          <p class="mb-4">Das Wachstum war explosiv. Schnell wurden aus 5 Schülern 50, dann 100, dann 300. Ich wurde lokal bekannt, die Presse berichtete. Von außen sah alles nach einem Märchen aus.</p>
+                          <p class="mb-4">Doch hinter den Kulissen begann das Fundament zu bröckeln. Ich arbeitete 7 Tage die Woche, beantwortete Anfragen bis spät in die Nacht und stand trotzdem oft selbst im Stall, um auszumisten, weil Personal teuer war.</p>`
+            },
+            '2022': {
+                title: '2022 – Die harte Wahrheit',
+                image: 'assets/story_struggle_real.webp',
+                content: `<p class="mb-4 font-medium text-lg text-neutral-900">"Ich saß in einer leeren Box und weinte, während die Bilanz des Monats auf meinem Handybildschirm leuchtete."</p>
+                          <p class="mb-4">Das Jahr 2022 war mein persönlicher Tiefpunkt. Die Energiekosten explodierten, die Inflation stieg, aber meine Preise waren immer noch auf dem Niveau von 2018. Ich hatte Angst, Kunden zu verlieren, wenn ich teurer werde.</p>
+                          <p class="mb-4">Das Ergebnis: Ein sechstelliger Umsatz, der komplett von den Kosten aufgefressen wurde. Ich hatte über 300 Schüler, aber keinen Gewinn. Ich war Dienstleister, Stallbursche, Buchhalter und Seelsorger in einem – und völlig ausgebrannt.</p>
+                          <p class="mb-4">Da erkannte ich: Wenn ich so weitermache, gibt es die Reitschule nächstes Jahr nicht mehr. Ich musste mich entscheiden: Aufhören oder alles ändern.</p>`
+            },
+            '2023': {
+                title: '2023 – Die Revolution 🚀',
+                image: 'assets/story_success_real.webp',
+                content: `<p class="mb-4 font-medium text-lg text-neutral-900">"Der Moment, in dem ich meine Preise verdoppelte, war der Moment, in dem ich frei wurde."</p>
+                          <p class="mb-4">Ich entschied mich für den radikalsten Schritt meiner Karriere: Weg vom Massengeschäft, hin zur Exklusivität. Ich kündigte den Vertrag mit der "Masse" und positionierte mich neu als Premium-Anbieter.</p>
+                          <p class="mb-4"><strong>Die Maßnahmen:</strong></p>
+                          <ul class="list-disc pl-5 mb-6 space-y-2 text-neutral-700">
+                             <li>Preiserhöhung von 169€ auf 319€ monatlich</li>
+                             <li>Reduzierung der Schülerzahl für mehr Qualität</li>
+                             <li>Einführung digitaler Prozesse (keine Zettelwirtschaft mehr!)</li>
+                             <li>Professionelles Branding und Marketing</li>
+                          </ul>
+                          <p class="mb-4">Die Angst war groß, doch das Ergebnis überwältigend. Die richtigen Kunden blieben und waren dankbar für die Qualität. Heute arbeite ich weniger, verdiene mehr und habe meine Leidenschaft für die Pferde zurückgewonnen.</p>`
+            }
+        };
+
+        const BLOG_DATA = {
+            'marketing': {
+                title: 'Marketing Automation für Reitställe',
+                image: 'assets/blog_analytics_real.png',
+                content: `<p class="mb-4 text-lg">Wie du E-Mails, Rechnungen und Terminbuchungen automatisierst, damit du mehr Zeit im Sattel verbringen kannst.</p>
+                          <p class="mb-4">Die Digitalisierung macht auch vor dem Stall nicht halt. Erfahre, wie moderne Tools dir 10h Büroarbeit pro Woche sparen können.</p>
+                          <h4 class="font-bold text-lg mb-2">Die 3 Säulen der Automation:</h4>
+                          <ul class="list-disc pl-5 space-y-2 mb-4">
+                            <li>Automatische Rechnungsstellung</li>
+                            <li>Online-Terminbuchung für Reitschüler</li>
+                            <li>E-Mail Funnels für Neukunden</li>
+                          </ul>`
+            },
+            'pricing': {
+                title: 'Premium Pricing Strategie',
+                image: 'assets/blog_premium_real.png',
+                content: `<p class="mb-4 text-lg">Warum billig dich pleite macht und wie du Preise durchsetzt, die deine Qualität widerspiegeln.</p>
+                          <p class="mb-4">Viele Reitschulen kalkulieren falsch. Sie orientieren sich an der Konkurrenz statt an ihren eigenen Kosten. Wir ändern das!</p>`
+            },
+            'balance': {
+                title: 'Work-Life-Balance im Stall',
+                image: 'assets/blog_relax_real.png',
+                content: `<p class="mb-4 text-lg">Abschalten trotz Selbstständigkeit? Ja, das geht. Meine besten Tipps gegen Burnout.</p>
+                          <p class="mb-4">Pferdemenschen arbeiten oft 24/7. Aber Qualität braucht Erholung. Hier ist mein Plan für freie Wochenenden.</p>`
+            }
+        };
+
+        const CHAT_MESSAGES = [
+            { text: "Ich arbeite 7 Tage die Woche, aber es bleibt kaum etwas übrig. 😓", isUser: true },
+            { text: "Das kenne ich. Aber das muss nicht so bleiben.", isUser: false },
+            { text: "Aber meine Kunden zahlen nicht mehr...", isUser: true },
+            { text: "Doch, wenn der Wert stimmt. Wir müssen deine Positionierung ändern.", isUser: false },
+            { text: "Echt? Wie fangen wir an?", isUser: true },
+            { text: "Lass uns sprechen. Ich zeige dir den Weg zum Erfolg.", isUser: false }
+        ];
+
+        const HERO_TEXT = "Schluss mit Theorie. Ich zeige dir Strategien, die im echten Stall-Alltag funktionieren. Vom Hamsterrad in den Geschäftsführer-Sessel. Mach dein Business profitabel, planbar und frei von Stress.";
+
+        /* -------------------------------------------------------------------------- */
+        /* SYSTEM: ENGINE & LOGIC (DO NOT TOUCH UNLESS NEEDED)                        */
+        /* -------------------------------------------------------------------------- */
+
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            gsap.registerPlugin(TextPlugin, ScrollTrigger);
+            initSystem();
+        });
+
+        function initSystem() {
+            initCursor();
+            initAnimations();
+            initTypewriter();
+            initChatSimulation();
+            initFAQ();
+            initTestimonials();
+            initBackToTop();
+        }
+
+        function initFAQ() {
+            const container = document.getElementById('faqContainer');
+            if (!container) return;
+            container.innerHTML = FAQ_DATA.map((item, index) => `
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFAQ(${index})">
+                        <span>${item.q}</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-content-${index}" class="faq-content">
+                        <div class="pb-6">${item.a}</div>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        window.toggleFAQ = (index) => {
+            const content = document.getElementById(`faq-content-${index}`);
+            const trigger = content.previousElementSibling;
+            const icon = trigger.querySelector('[data-lucide="chevron-down"]');
+            const isOpen = content.style.height && content.style.height !== '0px';
+
+            document.querySelectorAll('.faq-content').forEach((el, i) => {
+                el.style.height = '0px';
+                const otherTrigger = el.previousElementSibling;
+                const otherIcon = otherTrigger.querySelector('[data-lucide="chevron-down"]');
+                if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+            });
+
+            if (!isOpen) {
+                content.style.height = content.scrollHeight + 'px';
+                if (icon) icon.style.transform = 'rotate(180deg)';
+            }
+        };
+
+        function initTestimonials() {
+            const track = document.getElementById('testimonialTrack');
+            if (!track) return;
+
+            // Render 12 cards (6 items x 2) for infinite scroll
+            const allItems = [...TESTIMONIAL_DATA, ...TESTIMONIAL_DATA];
+
+            track.innerHTML = allItems.map(item => `
+                <div class="testimonial-card-slider">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="${item.image}" class="w-14 h-14 rounded-full object-cover border-2 border-neutral-100 shadow-sm">
+                        <div>
+                            <div class="font-bold text-neutral-900">${item.name}</div>
+                            <div class="text-xs text-neutral-400">${item.role}</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        ${Array(5).fill('<i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>').join('')}
+                    </div>
+                    <p class="text-sm text-neutral-600 italic leading-relaxed">"${item.text}"</p>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+
+            // GSAP Loop Animation
+            const totalWidth = track.scrollWidth / 2;
+            gsap.to(track, {
+                x: -totalWidth,
+                duration: 30,
+                repeat: -1,
+                ease: "none"
+            });
+        }
+
+        function initBackToTop() {
+            const btn = document.createElement('div');
+            btn.className = 'back-to-top';
+            btn.innerHTML = '<i data-lucide="arrow-up" class="w-6 h-6"></i>';
+            document.body.appendChild(btn);
+            lucide.createIcons();
+
+            window.addEventListener('scroll', () => {
+                const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                if (scrollPercent > 50) btn.classList.add('visible');
+                else btn.classList.remove('visible');
+            });
+
+            btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function initCursor() {
+            const cursorElement = document.getElementById('cursorFollower');
+            if (!cursorElement) return;
+
+            document.addEventListener('mousemove', e => {
+                cursorElement.style.left = e.clientX + 'px';
+                cursorElement.style.top = e.clientY + 'px';
+            });
+
+            const textElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, a, button, input, textarea');
+            textElements.forEach(el => {
+                el.addEventListener('mouseenter', () => cursorElement.classList.add('text-hover'));
+                el.addEventListener('mouseleave', () => cursorElement.classList.remove('text-hover'));
+            });
+        }
+
+        function initAnimations() {
+            const sections = document.querySelectorAll("section");
+            sections.forEach(section => {
+                gsap.fromTo(section,
+                    { opacity: 0, y: 50 },
+                    {
+                        opacity: 1, y: 0, duration: 1.2, ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse"
+                        }
+                    }
+                );
+            });
+
+            // Typewriter cycling logic
+            const words = ["Unkonventionell.", "Authentisch.", "Leidenschaftlich.", "Professionell."];
+            let wordIndex = 0;
+
+            function cycleTypewriter() {
+                gsap.to("#heroTypewriter", {
+                    duration: 1.5,
+                    text: words[wordIndex],
+                    ease: "none",
+                    onComplete: () => {
+                        wordIndex = (wordIndex + 1) % words.length;
+                        setTimeout(cycleTypewriter, 2000);
+                    }
+                });
+            }
+            cycleTypewriter();
+
+            // Chat Label Animation (Restored)
+            const chatTl = gsap.timeline({ repeat: -1 });
+            chatTl.to("#chatLabel", { duration: 1.5, text: "Chat mit uns", ease: "none" })
+                .to("#chatLabel", { duration: 1, delay: 2, text: "", ease: "none" })
+                .to("#chatLabel", { duration: 1.5, text: "Frage mich?", ease: "none" })
+                .to("#chatLabel", { duration: 1, delay: 2, text: "", ease: "none" });
+        }
+
+        function initTypewriter() {
+            gsap.to(".type-writer-text", {
+                text: { value: HERO_TEXT, delimiter: "" },
+                duration: 8,
+                ease: "none",
+                delay: 0.5,
+                scrollTrigger: { trigger: ".type-writer-text", start: "top 80%" }
+            });
+        }
+
+        function initChatSimulation() {
+            const chatContainer = document.getElementById('chat-simulation-container');
+            if (!chatContainer) return;
+
+            chatContainer.innerHTML = '';
+            const tl = gsap.timeline({
+                scrollTrigger: { trigger: "#chat-simulation-container", start: "top 70%" }
+            });
+
+            CHAT_MESSAGES.forEach((msg) => {
+                const { div, bubble } = createMessageElement(msg);
+                chatContainer.appendChild(div);
+                tl.to(bubble, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.7)" }, "+=0.8");
+            });
+        }
+
+        function createMessageElement(msg) {
+            const div = document.createElement('div');
+            div.className = `flex w-full ${msg.isUser ? 'justify-end' : 'justify-start'}`;
+            const bubble = document.createElement('div');
+            bubble.className = `max-w-[85%] rounded-2xl px-5 py-3 text-base shadow-sm ${msg.isUser ? 'bg-neutral-900 text-white rounded-br-none' : 'bg-neutral-100 text-neutral-800 rounded-bl-none'}`;
+            bubble.innerText = msg.text;
+            bubble.style.opacity = 0;
+            bubble.style.transform = "translateY(10px) scale(0.95)";
+            div.appendChild(bubble);
+            return { div, bubble };
+        }
+
+        // --- GLOBAL UI FUNCTIONS ---
+
+        function toggleChat() {
+            document.getElementById('chatPopup').classList.toggle('active');
+        }
+
+        function toggleMenu() {
+            const overlay = document.getElementById('mobileMenuOverlay');
+            overlay.classList.toggle('active');
+            if (overlay.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+                gsap.from(".mobile-link", {
+                    x: 50,
+                    opacity: 0,
+                    duration: 0.5,
+                    stagger: 0.1,
+                    ease: "back.out(1.7)"
+                });
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function openModal(year) {
+            const data = MODAL_DATA[year];
+            renderModal(data, true);
+        }
+
+        function openBlogModal(topic) {
+            const data = BLOG_DATA[topic];
+            renderModal(data, false);
+        }
+
+        function renderModal(data, isStory) {
+            const inner = document.getElementById('modalInner');
+            inner.innerHTML = `
+                <div class="h-64 md:h-80 overflow-hidden relative group">
+                    <img src="${data.image}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <span class="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2 inline-block border border-white/30">${isStory ? 'Kapitel' : 'Blog Artikel'}</span>
+                    </div>
+                </div>
+                <div class="p-8 md:p-12">
+                    <h3 class="text-3xl font-bold text-neutral-900 mb-6 font-display">${data.title}</h3>
+                    <div class="text-neutral-600 leading-relaxed text-lg space-y-4">${data.content}</div>
+                    <div class="mt-10 pt-8 border-t border-neutral-100 flex flex-col sm:flex-row gap-4">
+                        ${isStory ? `
+                        <a href="#contact" onclick="closeModal()" class="btn-primary px-8 py-4 text-sm inline-flex items-center justify-center gap-2 rounded-xl">
+                            <span>Meine Strategie lernen</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>` : ''}
+                        <button onclick="closeModal()" class="btn-ghost px-8 py-4 text-sm inline-flex items-center justify-center gap-2 rounded-xl">
+                            Schließen
+                        </button>
+                    </div>
+                </div>`;
+            document.getElementById('modalOverlay').classList.add('active');
+            document.getElementById('modalContent').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.getElementById('modalContent').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    </script>
+</body>
+
+</html>
